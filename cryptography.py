@@ -81,6 +81,37 @@ def cipherText(cipherText):
         elif ():
 
 
+ #test if this is affine
+    if():
+        elif():
+            elif():
+                elif():
+                    elif():
+                        elif():
+def add(num1, num2, mod=26):
+  return ((num1+num2) % mod)
+
+def mult (num1, num2, mod=26):
+  return ((num1*num2) % mod)
+
+def encrypt_with_additive(plain_text, n, block_size):
+    cipher_text = ''
+    for index in range(len(plain_text)):
+        letter = enc_letter(plain_text[index].lower())
+        cipher_text += dec_letter(add(letter, n)).upper()
+        if index!=0 and (index-1)%block_size==0:
+            cipher_text+=" "
+    return cipher_text
+
+def encrypt_with_multiplicative(plain_text, n, block_size):
+    cipher_text = ''
+    for index in range(len(plain_text)):
+        letter = enc_letter(plain_text[index].lower())
+        cipher_text += dec_letter(mult(letter, n)).upper()
+        if index!=0 and (index-1)%block_size==0:
+            cipher_text+=" "
+    return cipher_text          
+          
 def sum(num1, num2, mod=26):
     return ((num1 + num2) % mod)
 
