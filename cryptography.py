@@ -43,6 +43,9 @@ def find_repeats(text):
                 repeats.append((test, diff))
     return repeats
 
+def determine_IC_type(ic):
+    
+    
 
 message_input = input("Enter message: ")
 # message_input = "JNFEP DNBLZ BCDLL RYVNN MZCNA GLIGN EYNAR NMZRW HRRAA EENGG ANYAA CHUEG MISOM RGZZA AMTVF AFETP " \
@@ -64,6 +67,13 @@ def cipherText(cipherText):
         5: "Hill"
         6: "Rivest-Shamir-Alderman"
     }
+    #test if this is affine
+    if():
+        elif():
+            elif():
+                elif():
+                    elif():
+                        elif():
 def sum (num1, num2, mod=26):
   return ((num1+num2) % mod)
 
