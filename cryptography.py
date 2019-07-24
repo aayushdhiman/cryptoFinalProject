@@ -78,6 +78,27 @@ def encrypt_with_affine(plain_text, n, r, block_size):
     plain_text = encrypt_with_additive(plain_text, n, block_size)
     plain_text = encrypt_with_multiplicative(plain_text.replace(" ", ''), r, block_size)
     return plain_text
+ 
+def encrypt_with_hill(plain_text, matrix):
+    cipher=''
+    if len(plain_text)%2==1:
+        plain_text+='z'
+    for index in range(0,len(plain_text),2):
+        plain_letter1 = enc_letter(plain_text[index])
+        plain_letter2 = enc_letter(plain_text[index+1])
+        cipher_letters = mult_matrix(matrix, [plain_letter1, plain_letter2])
+        cipher_letter1 = dec_letter(cipher_letters[0])
+        cipher_letter2 = dec_letter(cipher_letters[1])
+        cipher+=cipher_letter1
+        cipher+=cipher_letter2
+    return cipher.upper()
+        
+def mult_matrix(matrix2x2, matrix2x1, mod=26):
+    row1 = matrix2x2[0][0]*matrix2x1[0]+matrix2x2[0][1]*matrix2x1[1]
+    row2 = matrix2x2[1][0]*matrix2x1[0]+matrix2x2[1][1]*matrix2x1[1]
+    row1 %= mod
+    row2 %= mod
+    return [row1, row2]
 
 # Finds every nth letter in a text when given the keyword length (Viginere)
 def get_every_nth(text, key_length):
