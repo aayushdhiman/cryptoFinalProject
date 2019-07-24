@@ -6,11 +6,15 @@ def mult (num1, num2, mod=26):
   return ((num1*num2) % mod)
 
 def power (num1, num2, mod=26):
-
+  a = num2 % phi(mod)
+  return (num1 ** a) % 26
 def phi (num):
   list2 = factor(num, list1)
-  result = (list2[0]-1) * (list2[1]-1)
-  return result
+  prod = product(list2)
+  s = set(list2)
+  for a in s
+    prod = prod * ((1- (1/s)))
+  return prod
 
 def gcd(num1, num2):
   if (num1 == 0):
@@ -23,3 +27,9 @@ def factor(num1, list1):
       list1.append(i)
       factor((num1 / i), list1)    
  return list1
+
+def product(list):
+    p = 1
+    for i in list:
+        p *= i
+    return p
