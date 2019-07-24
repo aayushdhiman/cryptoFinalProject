@@ -72,22 +72,8 @@ def cipherText(cipherText):
         5: "Hill"
         6: "Rivest-Shamir-Alderman"
     }
-    # test if this is affine
-    if ():
-        elif ():
-        elif ():
-        elif ():
-        elif ():
-        elif ():
 
-
- #test if this is affine
-    if():
-        elif():
-            elif():
-                elif():
-                    elif():
-                        elif():
+    
 def add(num1, num2, mod=26):
   return ((num1+num2) % mod)
 
