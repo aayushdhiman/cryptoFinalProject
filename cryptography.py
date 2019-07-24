@@ -44,19 +44,6 @@ def find_repeats(text):
     return repeats
 
 def determine_IC_type(ic):
-    
-    
-
-message_input = input("Enter message: ")
-# message_input = "JNFEP DNBLZ BCDLL RYVNN MZCNA GLIGN EYNAR NMZRW HRRAA EENGG ANYAA CHUEG MISOM RGZZA AMTVF AFETP " \
-                "DYAGA SJRZY BXZEE ESQTH AHRQI AGKFA ARANL LMOEM SFSXY TYNSK OZNVH YEQRQ RCKLA ZCCCP XKWVC VJHBW " \
-                "PRMQE ETTWV UZOEI YESNB GEWAO GQSTU XZTFJ HGHXL NQXTG HXTEN UHUEX SECQO ATLDO ACDNY XLER"
-
-# message_input = "DDESOEOSDDHOQQHKMDHXJBBSQDTRYNBMHOPHGJEUHOQQOTDDGWHOQQWDNZYIJGHXWBBIEFAUOFVMWOKYANKCWBDDOFESCCDDGEGZYQXY"
-
-message_input = message_input.replace(" ", "").strip()
-print(get_every_nth(message_input, 8))
-print(find_repeats(message_input))
 
 def cipherText(cipherText):
     Switcher = {
@@ -74,8 +61,26 @@ def cipherText(cipherText):
                 elif():
                     elif():
                         elif():
-def sum (num1, num2, mod=26):
+def add(num1, num2, mod=26):
   return ((num1+num2) % mod)
 
 def mult (num1, num2, mod=26):
   return ((num1*num2) % mod)
+
+def encrypt_with_additive(plain_text, n, block_size):
+    cipher_text = ''
+    for index in range(len(plain_text)):
+        letter = enc_letter(plain_text[index].lower())
+        cipher_text += dec_letter(add(letter, n)).upper()
+        if index!=0 and (index-1)%block_size==0:
+            cipher_text+=" "
+    return cipher_text
+
+def encrypt_with_multiplicative(plain_text, n, block_size):
+    cipher_text = ''
+    for index in range(len(plain_text)):
+        letter = enc_letter(plain_text[index].lower())
+        cipher_text += dec_letter(mult(letter, n)).upper()
+        if index!=0 and (index-1)%block_size==0:
+            cipher_text+=" "
+    return cipher_text
