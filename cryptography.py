@@ -1,3 +1,5 @@
+from collections import Counter 
+
 def calcIC(text):
     counts = Counter(text)
     num = 0.0
