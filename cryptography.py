@@ -116,7 +116,21 @@ def encrypt_with_affine(plain_text, n, r, block_size):
     plain_text = encrypt_with_additive(plain_text, n, block_size)
     plain_text = encrypt_with_multiplicative(plain_text.replace(" ", ''), r, block_size)
     return plain_text
+  
+  
+def encrypt_with_viginere(message, key):
+    key_length = len(key)
+    int_key = [ord(i) for i in key]
+    int_message = [ord(i) for i in message]
+    cipher_text = ''
+
+    for i in range(len(int_message)):
+        value = (int_message[i] + int_key[i % key_length]) % 26
+        cipher_text += chr(value + 65)
+
+    return cipher_text
           
+    
 def sum(num1, num2, mod=26):
     return ((num1 + num2) % mod)
 
