@@ -64,3 +64,8 @@ def cipherText(cipherText):
         5: "Hill"
         6: "Rivest-Shamir-Alderman"
     }
+def sum (num1, num2, mod=26):
+  return ((num1+num2) % mod)
+
+def mult (num1, num2, mod=26):
+  return ((num1*num2) % mod)
