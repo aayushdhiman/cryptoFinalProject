@@ -1,5 +1,7 @@
 from collections import Counter 
 
+cipherText_dic = {"Affine":1,"Multiplicative":2,"Additive":3,"Hill":4,"Vigenere":5,"Rivest-Shamir-Alderman":6}
+
 def calc_ic(text):
     counts = Counter(text)
     num = 0.0
@@ -42,8 +44,8 @@ def find_repeats(text):
     return repeats
 
 
-# message_input = input("Enter message: ")
-message_input = "JNFEP DNBLZ BCDLL RYVNN MZCNA GLIGN EYNAR NMZRW HRRAA EENGG ANYAA CHUEG MISOM RGZZA AMTVF AFETP " \
+message_input = input("Enter message: ")
+# message_input = "JNFEP DNBLZ BCDLL RYVNN MZCNA GLIGN EYNAR NMZRW HRRAA EENGG ANYAA CHUEG MISOM RGZZA AMTVF AFETP " \
                 "DYAGA SJRZY BXZEE ESQTH AHRQI AGKFA ARANL LMOEM SFSXY TYNSK OZNVH YEQRQ RCKLA ZCCCP XKWVC VJHBW " \
                 "PRMQE ETTWV UZOEI YESNB GEWAO GQSTU XZTFJ HGHXL NQXTG HXTEN UHUEX SECQO ATLDO ACDNY XLER"
 
@@ -52,3 +54,13 @@ message_input = "JNFEP DNBLZ BCDLL RYVNN MZCNA GLIGN EYNAR NMZRW HRRAA EENGG ANY
 message_input = message_input.replace(" ", "").strip()
 print(get_every_nth(message_input, 8))
 print(find_repeats(message_input))
+
+def cipherText(cipherText):
+    Switcher = {
+        1: "Affine"
+        2: "Multiplicative"
+        3: "Additive"
+        4: "Vigenere"
+        5: "Hill"
+        6: "Rivest-Shamir-Alderman"
+    }
