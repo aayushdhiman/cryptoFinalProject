@@ -1,6 +1,6 @@
 from collections import Counter 
 
-def calcIC(text):
+def calc_ic(text):
     counts = Counter(text)
     num = 0.0
     den = 0.0
@@ -12,6 +12,14 @@ def calcIC(text):
         return 0.0
     else:
         return num / ( den * (den - 1))
+    
+def enc_letter(letter):
+    return ord(letter.lower())-96
+
+def dec_letter(letter):
+    if letter==0:
+        letter=26
+    return chr(letter+96)
 
 def get_every_nth(text, key_length):
 
