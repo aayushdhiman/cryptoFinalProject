@@ -110,7 +110,12 @@ def encrypt_with_multiplicative(plain_text, n, block_size):
         cipher_text += dec_letter(mult(letter, n)).upper()
         if index!=0 and (index-1)%block_size==0:
             cipher_text+=" "
-    return cipher_text          
+    return cipher_text
+  
+def encrypt_with_affine(plain_text, n, r, block_size):
+    plain_text = encrypt_with_additive(plain_text, n, block_size)
+    plain_text = encrypt_with_multiplicative(plain_text.replace(" ", ''), r, block_size)
+    return plain_text
           
 def sum(num1, num2, mod=26):
     return ((num1 + num2) % mod)
