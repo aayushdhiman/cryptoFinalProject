@@ -48,3 +48,7 @@ def file_format():
         words_medium[i] = words_medium[i][:-1]
 
     return words_medium
+
+def block_text(text, length):
+    output = ' '.join(text[i:i+length] for i in range(0,len(text),length))
+    return output
