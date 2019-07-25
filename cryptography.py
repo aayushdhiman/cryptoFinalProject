@@ -5,6 +5,15 @@ cipherText_dic = {"Affine": 1, "Multiplicative": 2, "Additive": 3, "Hill": 4, "V
 
 # Reference functions:
 
+# Blocks Text
+def block(text):
+      blockedText = ' '.join([cipherText[i:i+6] for i in range(0,len(cipherText), 6)])
+      return blockedText
+    
+cipherText = input("")
+a = block(cipherText)
+print(a)
+
 # Calculates IC of text, returns decimal value
 def calc_ic(text):
     counts = Counter(text)
