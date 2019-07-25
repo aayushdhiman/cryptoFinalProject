@@ -1,0 +1,51 @@
+def block(text):
+      blockedText = ' '.join([cipherText[i:i+6] for i in range(0,len(cipherText), 6)])
+      while(len(blockedText) % 6 != 0):
+          blockedText = blockedText + 'a'
+      return blockedText
+      
+def enc_with_zeroes(letter):
+    output = str(ord(letter)-96)
+    if len(output) == 1:
+        output = '0'+output
+    return output
+    
+def getAllNumbersOfCipherText(text):
+    lst = []
+    i = 0;    
+    while(i < len(text)):
+        lst.append(enc_with_zeroes(text[i]))        
+        i = i + 1            
+    return lst
+    
+def concentatelist(list):
+    newlst = []
+    for i in range(0, int(len(list) / 7)+1):
+        a = ''
+        for j in range (0,7):
+          if (j != 6):
+            a += str(list[(i*7)+j])
+        newlst.append(int(a))
+    return newlst    
+    
+def power (num1, e, mod, phi):
+    a = e % phi
+    return (num1 ** a) % mod 
+    
+cipherText = input("Cyphertext: ")
+p = int(input("First Prime: "))
+q = int(input("Second Prime: "))
+n = p*q
+e = int(input("Encryption Key: "))
+phi = (p-1)* (q-1)
+
+a = block(cipherText)
+b = getAllNumbersOfCipherText(a)
+c = concentatelist(b)
+d = []
+for i in range (0, len(c)):
+   d.append(power(c[i], e, n, phi))  
+print(a)
+print(b)
+print(c)
+print(d)
