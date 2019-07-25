@@ -173,6 +173,82 @@ def encrypt_with_viginere(message, key):
         cipher_text += chr(value + 65)
 
     return cipher_text
+
+#Viginere decryption
+  def decrypt(cipher_text, key):
+    keylength = len(key)
+    # print(keylength)
+    key_int = [ord(i) for i in key]
+    # print(key_int)
+    cipher_text_int = [ord(i) for i in cipher_text]
+    # print(cipher_text_int)
+    plain_text = ''
+    for i in range(len(cipher_text_int)):
+        value = ((cipher_text_int[i] - key_int[i % keylength]) - 20) % 26
+        plain_text += chr(value + 65)
+    return plain_text
+
+
+def find_repeats(text):
+    repeats = []
+    for length in range(5, 100):
+        for start in range(0, len(text) - length + 1):
+            word = text[start:start + length]
+            if word in text[start + length::]:
+                repeats.append((word, text[start + length::].find(word) + length))
+    return repeats
+
+
+def file_format():
+    file = open("no_swears_medium.txt", "r")
+    words_medium = file.readlines()
+
+    for i in range(len(words_medium)):
+        words_medium[i] = words_medium[i][:-1]
+
+    return words_medium
+
+def brute_force(keylength, words, message_ciphertext):
+    plain_texts = []
+    for i in range(len(words)):
+        if len(words[i]) == keylength:
+            plain_texts.append(decrypt(message_ciphertext, words[i]))
+            # print(plain_texts)
+
+    top_ic = []
+    top_keywords = []
+    index = 0
+    best_ic = 0
+    while len(top_ic) < 20:
+        min_score = abs(calc_ic(plain_texts[0]) - .067)
+        best_keyword = plain_texts[0]
+        for j in range(len(plain_texts)):
+            if abs(calc_ic(plain_texts[j]) - .067) < min_score:
+                min_score = abs(calc_ic(plain_texts[j]) - .067)
+                best_keyword = plain_texts[j]
+                index = j
+                best_ic = min_score
+        top_ic.append(best_ic)
+        top_keywords.append(best_keyword)
+        plain_texts.remove(plain_texts[index])
+    lists = [top_ic, top_keywords]
+    return lists
+
+
+def pretty_print(ic_s, plaintexts):
+    for i in range(len(ic_s)):
+        # for j in range(len(ls[0])):
+        print("IC: " + str(ic_s[i])[:10] + "\t" + " Decoded Possibility: " + plaintexts[i])
+
+
+# message_input = input("Viginere ciphertext: ")
+message = message_input.replace(" ", "").strip()
+repeated_strings = find_repeats(message)
+key_length = len(repeated_strings[0][0])
+check_words = file_format()
+lists = brute_force(key_length, check_words, message)
+pretty_print(lists[0], lists[1])
+
   
   
 # Additive Decryption
