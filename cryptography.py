@@ -213,3 +213,36 @@ def decrypt_affine(cipher):
                 best_score=score
                 best_string=plain
     return best_string
+  
+ def decrypt_hill(cipher):
+    possible_dets = [1,3,5,7,9,11,15,17,19,21,23,25]
+    best_score = 10000
+    best_string = ''
+    best_matrix = []
+    for a in range(26):
+        for b in range(26):
+            for c in range(26):
+                for d in range(26):
+                    matrix = [[a,b],[c,d]]
+                    if get_det(matrix) in possible_dets:
+                        plain = encrypt_with_hill(cipher, matrix)
+                        score = fa_test_if_english(plain)
+                        if score<best_score:
+                            best_score=score
+                            best_string=plain
+                            best_matrix = matrix
+    a=best_matrix[0][0]
+    b=best_matrix[0][1]
+    c=best_matrix[1][0]
+    d=best_matrix[1][1]
+    results = []
+    for num1 in [a,b,c,d]:
+        for num2 in [x for x in [a,b,c,d] if x!=num1]:
+            for num3 in [x for x in [a,b,c,d] if x!=num1 and x!=num2]:
+                for num4 in [x for x in [a,b,c,d] if x!=num1 and x!=num2 and x!=num3]:
+                    matrix1 = [[num1,num2],[num3,num4]]
+                    results.append(encrypt_with_hill(cipher, matrix1))
+    return results
+
+def get_det(arr):
+    return ((arr[0][0]*arr[1][1])-(arr[0][1]*arr[1][0]))%26
