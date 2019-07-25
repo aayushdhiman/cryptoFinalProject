@@ -39,7 +39,7 @@ def product(list):
     for i in list:
         p *= i
     return p
-def modinverse(e, mod=26)
+def modinverse(e, mod=26):
   e = e % mod
   for i in range (1, mod):
     if (a * i) % m == 1):
