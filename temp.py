@@ -23,3 +23,9 @@ key_length = len(repeated_strings[0])
 def attempt_decode(message, key_length):
     messages = []
     # for 
+
+def enc_with_zeroes(letter):
+    output = str(ord(letter)-96)
+    if len(output) == 1:
+        output = '0'+output
+    return output
