@@ -58,10 +58,10 @@ def fa_test_if_english(text):
         score+=abs(frequencies[letter]-(counts/length*100))
     for letter in bigrams.keys():
         counts = text.count(letter)
-        score+=abs(bigrams[letter]-(counts/bi))
+        score+=abs(bigrams[letter]-(counts/bi*100))
     for letter in trigrams.keys():
         counts = text.count(letter)
-        score+=abs(trigrams[letter]-(counts/tri))
+        score+=abs(trigrams[letter]-(counts/tri*100))
     return score
 
 
