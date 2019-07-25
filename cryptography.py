@@ -94,6 +94,7 @@ def multiply(num1, num2, mod=26):
     return (num1 * num2) % mod
 
 
+# Additive Encryption
 def encrypt_with_additive(plain_text, n, block_size):
     cipher_text = ''
     for index in range(len(plain_text)):
@@ -103,7 +104,7 @@ def encrypt_with_additive(plain_text, n, block_size):
             cipher_text += " "
     return cipher_text
 
-
+# Multiplicative Encryption
 def encrypt_with_multiplicative(plain_text, n, block_size):
     cipher_text = ''
     for index in range(len(plain_text)):
@@ -114,11 +115,13 @@ def encrypt_with_multiplicative(plain_text, n, block_size):
     return cipher_text
 
 
+# Affine Encryption
 def encrypt_with_affine(plain_text, n, r, block_size):
     plain_text = encrypt_with_additive(plain_text, n, block_size)
     plain_text = encrypt_with_multiplicative(plain_text.replace(" ", ''), r, block_size)
     return plain_text
  
+# Hill Encryption
 def encrypt_with_hill(plain_text, matrix):
     cipher=''
     if len(plain_text)%2==1:
@@ -157,12 +160,7 @@ def find_repeats(text):
     return repeats
 
 
-# Viginere input and decryption -> incomplete
-# message_input = input("Enter message: ")
-#
-# message_input = message_input.replace(" ", "").strip()
-# print(get_every_nth(message_input, 8))
-# print(find_repeats(message_input))
+# Viginere Encrypter and Decrypter
 
 def encrypt_with_viginere(message, key):
     key_length = len(key)
@@ -176,6 +174,8 @@ def encrypt_with_viginere(message, key):
 
     return cipher_text
   
+  
+# Additive Decryption
 def decrypt_additive(cipher):
     cipher = cipher.lower().replace(" ",'')
     best_score = 10000
@@ -187,7 +187,9 @@ def decrypt_additive(cipher):
             best_score=score
             best_string=plain
     return best_string
+  
 
+# Multiplicative Decryption
 def decrypt_multiplicative(cipher):
     cipher = cipher.lower().replace(" ",'')
     best_score = 10000
@@ -214,6 +216,8 @@ def decrypt_affine(cipher):
                 best_string=plain
     return best_string
   
+  
+# Hill Decryption
  def decrypt_hill(cipher):
     possible_dets = [1,3,5,7,9,11,15,17,19,21,23,25]
     best_score = 10000
