@@ -166,3 +166,41 @@ def encrypt_with_viginere(message, key):
         cipher_text += chr(value + 65)
 
     return cipher_text
+  
+def decrypt_additive(cipher):
+    cipher = cipher.lower().replace(" ",'')
+    best_score = 10000
+    best_string = ''
+    for i in range(26):
+        plain = encrypt_with_additive(cipher, i, len(cipher)+1).lower().replace(" ",'')
+        score = fa_test_if_english(plain)
+        if score<best_score:
+            best_score=score
+            best_string=plain
+    return best_string
+
+def decrypt_multiplicative(cipher):
+    cipher = cipher.lower().replace(" ",'')
+    best_score = 10000
+    best_string = ''
+    for i in range(26):
+        plain = encrypt_with_multiplicative(cipher, i, len(cipher)+1).lower().replace(" ",'')
+        score = fa_test_if_english(plain)
+        if score<best_score:
+            best_score=score
+            best_string=plain
+    return best_string
+
+def decrypt_affine(cipher):
+    cipher = cipher.lower().replace(" ",'')
+    best_score = 10000
+    best_string = ''
+    for i in range(26):
+        for j in range(26):
+            plain = encrypt_with_multiplicative(cipher, i, len(cipher)+1).lower().replace(" ",'')
+            plain = encrypt_with_additive(plain, j, len(cipher)+1).lower().replace(" ",'')
+            score = fa_test_if_english(plain)
+            if score<best_score:
+                best_score=score
+                best_string=plain
+    return best_string
