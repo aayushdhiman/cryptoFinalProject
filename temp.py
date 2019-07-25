@@ -29,3 +29,22 @@ def enc_with_zeroes(letter):
     if len(output) == 1:
         output = '0'+output
     return output
+
+
+
+
+
+
+
+
+https://github.com/first20hours/google-10000-english/blob/master/google-10000-english-usa-no-swears-medium.txt
+    
+    
+def file_format():
+    file = open("no_swears_medium.txt", "r")
+    words_medium = file.readlines()
+
+    for i in range(len(words_medium)):
+        words_medium[i] = words_medium[i][:-1]
+
+    return words_medium
