@@ -40,9 +40,10 @@ def product(list):
         p *= i
     return p
 def modinverse(e, mod=26):
-  e = e % mod
-  for i in range (1, mod):
-    if ((a * i) % mod == 1):
-      return i
-  return 1  
-  
+    e = e % mod
+    if(gcd(e,mod) != 1):
+        return null
+    for i in range (1, mod):
+        if ((a * i) % mod == 1):
+            return i
+    return 1  
