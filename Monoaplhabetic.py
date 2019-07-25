@@ -1,4 +1,10 @@
 from collections import Counter
+
+# Blocks Text
+def block(text):
+      blockedText = ' '.join([cipherText[i:i+6] for i in range(0,len(cipherText), 6)])
+      return blockedText
+
 #Frequencey Analsys
 def get_frequency(text):
     return Counter(text)
